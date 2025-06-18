@@ -38,7 +38,7 @@ Flight::route('GET /connection-check', function(){
 });
 ```
 
-## STEP 2: get customer information
+## STEP 2: get customer information (GET /customers)
 
 **ExamDao.php:**
 
@@ -67,7 +67,7 @@ public function get_customers(){
 }
 ```
 
-## STEP 3: returns array of all meals for a specific customer GET /customer/meals/@customer_id
+## STEP 3: returns array of all meals for a specific customer (GET /customer/meals/@customer_id)
 ```php
 **ExamDao.php:**
 
@@ -99,7 +99,7 @@ public function get_customer_meals($customer_id){
 }
 ```
 
-## STEP 4: add the customer to the database POST /customers/add
+## STEP 4: add the customer to the database (POST /customers/add)
 
 **ExamDao.php**
 ```php
@@ -130,7 +130,7 @@ public function add_customer($customer){
 }
 ```
 
-## STEP 5: return the array of all foods from the database together with the image of the foods. - Fully paginated GET /foods/report
+## STEP 5: return the array of all foods from the database together with the image of the foods. - Fully paginated (GET /foods/report)
 
 **ExamDao.php**
 ```php
