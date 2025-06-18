@@ -1,10 +1,10 @@
 # final-mockup-2025
 
-FIRST STEP:
+##FIRST STEP:
 
-Conection with database : (/connection-check)
+**Conection with database : (/connection-check)**
 
-ExamDao.php:
+**ExamDao.php:**
 
 public function __construct(){
         try {
@@ -30,16 +30,16 @@ public function __construct(){
     }
 
 
-ExamRoutes.php:
+**ExamRoutes.php:**
 
 Flight::route('GET /connection-check', function(){
     new ExamDao(); //DODANO
 });
 
 
-STEP 2: get customer information
+**##STEP 2: get customer information**
 
-ExamDao.php:
+**ExamDao.php:**
 
   --get customer information--
 public function get_customers(){
@@ -48,21 +48,21 @@ public function get_customers(){
   return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
 }
 
-ExamRoutes.php:
+**ExamRoutes.php:**
 
 Flight::route('GET /customers', function(){
   Flight::json(Flight::examService()->get_customers());
 });
 
-ExamServices.php:
+**ExamServices.php:**
 
 public function get_customers(){
   return $this->dao->get_customers(); //DODANO
 }
 
-STEP 3: returns array of all meals for a specific customer
+##STEP 3: returns array of all meals for a specific customer
 
-ExamDao.php:
+**ExamDao.php:**
 
 public function get_customer_meals($customer_id) {
 
@@ -77,22 +77,22 @@ $stmt = $this->conn->prepare("
   return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
 }
 
-ExamRoutes.php:
+**ExamRoutes.php:**
 
 Flight::route('GET /customer/meals/@customer_id', function($customer_id){
   Flight::json(Flight::examService()->get_customer_meals($customer_id)); //DODANO
 });
 
-ExamServices.php:
+**ExamServices.php:**
 
 public function get_customer_meals($customer_id){
   return $this->dao->get_customer_meals($customer_id); //DODANO
 }
 
 
-STEP 4: add the customer to the database
+##STEP 4: add the customer to the database
 
-ExamDao.php
+**ExamDao.php**
 
 public function add_customer($data){
   //DODANO
@@ -105,22 +105,22 @@ public function add_customer($data){
   return $data; //DODANO
 }
 
-ExamRoutes.php:
+**ExamRoutes.php:**
 
 Flight::route('POST /customers/add', function() {
   $data = Flight::request()->data->getData(); //DODANO
   Flight::json(Flight::examService()->add_customer($data)); //DODANO
 });
 
-ExamService.php:
+**ExamService.php:**
 
 public function add_customer($customer){
   return $this->dao->add_customer($customer); //DODANO
 }
 
-STEP 5:
+##STEP 5:
 
-ExamDao.php
+**ExamDao.php**
 
 public function get_foods_report(){
       //DODANO
@@ -144,13 +144,13 @@ public function get_foods_report(){
         return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
     }
 
-ExamRoutes.php:
+**ExamRoutes.php:**
 
 Flight::route('GET /foods/report', function(){
   Flight::json(Flight::examService()->foods_report()); //DODANO
 });
 
-ExamServices.php:
+**ExamServices.php:**
 
 public function foods_report(){
   return $this->dao->get_foods_report(); //DODANO
