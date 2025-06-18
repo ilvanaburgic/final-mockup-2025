@@ -1,6 +1,6 @@
 # final-mockup-2025
 
-##FIRST STEP:
+## FIRST STEP:
 
 **Conection with database : (/connection-check)**
 
@@ -37,7 +37,7 @@ Flight::route('GET /connection-check', function(){
 });
 
 
-**##STEP 2: get customer information**
+## STEP 2: get customer information
 
 **ExamDao.php:**
 
@@ -90,7 +90,7 @@ public function get_customer_meals($customer_id){
 }
 
 
-##STEP 4: add the customer to the database
+## STEP 4: add the customer to the database
 
 **ExamDao.php**
 
@@ -118,7 +118,7 @@ public function add_customer($customer){
   return $this->dao->add_customer($customer); //DODANO
 }
 
-##STEP 5:
+## STEP 5:
 
 **ExamDao.php**
 
