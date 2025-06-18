@@ -1,11 +1,10 @@
 # final-mockup-2025
 
-## FIRST STEP:
-
-**Conection with database : (/connection-check)**
+## STEP 1: Conection with database : (/connection-check)
 
 **ExamDao.php:**
 
+```php
 public function __construct(){
         try {
           /** TODO
@@ -28,6 +27,7 @@ public function __construct(){
           echo "Connection failed: " . $e->getMessage();
         }
     }
+```
 
 
 **ExamRoutes.php:**
