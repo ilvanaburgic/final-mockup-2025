@@ -32,36 +32,43 @@ public function __construct(){
 
 **ExamRoutes.php:**
 
+```php
 Flight::route('GET /connection-check', function(){
     new ExamDao(); //DODANO
 });
-
+```
 
 ## STEP 2: get customer information
 
 **ExamDao.php:**
 
+```php
   --get customer information--
 public function get_customers(){
   $stmt = $this->conn->prepare("SELECT * FROM customers"); //DODANO
   $stmt->execute(); //DODANO
   return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
 }
+```
 
 **ExamRoutes.php:**
 
+```php
 Flight::route('GET /customers', function(){
   Flight::json(Flight::examService()->get_customers());
 });
+```
 
 **ExamServices.php:**
 
+```php
 public function get_customers(){
   return $this->dao->get_customers(); //DODANO
 }
+```
 
 ##STEP 3: returns array of all meals for a specific customer
-
+```php
 **ExamDao.php:**
 
 public function get_customer_meals($customer_id) {
@@ -76,24 +83,26 @@ $stmt = $this->conn->prepare("
   $stmt->execute([$customer_id]); //DODANO
   return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
 }
+```
 
 **ExamRoutes.php:**
-
+```php
 Flight::route('GET /customer/meals/@customer_id', function($customer_id){
   Flight::json(Flight::examService()->get_customer_meals($customer_id)); //DODANO
 });
+```
 
 **ExamServices.php:**
-
+```php
 public function get_customer_meals($customer_id){
   return $this->dao->get_customer_meals($customer_id); //DODANO
 }
-
+```
 
 ## STEP 4: add the customer to the database POST /customers/add
 
 **ExamDao.php**
-
+```php
 public function add_customer($data){
   //DODANO
   $stmt = $this->conn->prepare("
@@ -104,24 +113,27 @@ public function add_customer($data){
   $data['id'] = $this->conn->lastInsertId(); //DODANO
   return $data; //DODANO
 }
+```
 
 **ExamRoutes.php:**
-
+```php
 Flight::route('POST /customers/add', function() {
   $data = Flight::request()->data->getData(); //DODANO
   Flight::json(Flight::examService()->add_customer($data)); //DODANO
 });
+```
 
 **ExamService.php:**
-
+```php
 public function add_customer($customer){
   return $this->dao->add_customer($customer); //DODANO
 }
+```
 
 ## STEP 5: return the array of all foods from the database together with the image of the foods. - Fully paginated GET /foods/report
 
 **ExamDao.php**
-
+```php
 public function get_foods_report(){
       //DODANO
       $stmt = $this->conn->prepare("
@@ -143,15 +155,18 @@ public function get_foods_report(){
         $stmt->execute(); //DODANO
         return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
     }
+```
 
 **ExamRoutes.php:**
-
+```php
 Flight::route('GET /foods/report', function(){
   Flight::json(Flight::examService()->foods_report()); //DODANO
 });
+```
 
 **ExamServices.php:**
-
+```php
 public function foods_report(){
   return $this->dao->get_foods_report(); //DODANO
 }
+```
