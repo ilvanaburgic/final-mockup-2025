@@ -58,7 +58,14 @@ class ExamDao {
      * Implement DAO method used to save customer data
      */
     public function add_customer($data){
-
+      //DODANO
+      $stmt = $this->conn->prepare("
+            INSERT INTO customers (first_name, last_name, birth_date)
+            VALUES (:first_name, :last_name, :birth_date)
+        ");
+        $stmt->execute($data); //DODANO
+        $data['id'] = $this->conn->lastInsertId(); //DODANO
+        return $data; //DODANO
     }
 
     /** TODO

@@ -26,7 +26,7 @@ class ExamService {
     * Implement service method to add customer to the database
     */
     public function add_customer($customer){
-
+        return $this->dao->add_customer($customer); //DODANO
     }
 
     /** TODO

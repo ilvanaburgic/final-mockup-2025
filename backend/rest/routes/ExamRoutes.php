@@ -45,6 +45,8 @@ Flight::route('POST /customers/add', function() {
     * This endpoint should return the added customer in JSON format
     * 10 points
     */
+    $data = Flight::request()->data->getData(); //DODANO
+    Flight::json(Flight::examService()->add_customer($data)); //DODANO
 });
 
 Flight::route('GET /foods/report', function(){

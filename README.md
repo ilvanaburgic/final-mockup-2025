@@ -88,3 +88,32 @@ ExamServices.php:
 public function get_customer_meals($customer_id){
   return $this->dao->get_customer_meals($customer_id); //DODANO
 }
+
+
+STEP 4: add the customer to the database
+
+ExamDao.php
+
+public function add_customer($data){
+  //DODANO
+  $stmt = $this->conn->prepare("
+    INSERT INTO customers (first_name, last_name, birth_date)
+    VALUES (:first_name, :last_name, :birth_date)
+  ");
+  $stmt->execute($data); //DODANO
+  $data['id'] = $this->conn->lastInsertId(); //DODANO
+  return $data; //DODANO
+}
+
+ExamRoutes.php:
+
+Flight::route('POST /customers/add', function() {
+  $data = Flight::request()->data->getData(); //DODANO
+  Flight::json(Flight::examService()->add_customer($data)); //DODANO
+});
+
+ExamService.php:
+
+public function add_customer($customer){
+  return $this->dao->add_customer($customer); //DODANO
+}
