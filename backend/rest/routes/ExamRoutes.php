@@ -7,6 +7,8 @@ Flight::route('GET /connection-check', function(){
     * This endpoint does not have to return output in JSON format
     * 5 points
     */
+    // samo da izvrši echo iz konstruktora
+    new ExamDao(); //DODANO
 });
 
 Flight::route('GET /customers', function(){
