@@ -90,7 +90,7 @@ public function get_customer_meals($customer_id){
 }
 
 
-## STEP 4: add the customer to the database
+## STEP 4: add the customer to the database POST /customers/add
 
 **ExamDao.php**
 
@@ -118,7 +118,7 @@ public function add_customer($customer){
   return $this->dao->add_customer($customer); //DODANO
 }
 
-## STEP 5:
+## STEP 5: return the array of all foods from the database together with the image of the foods. - Fully paginated GET /foods/report
 
 **ExamDao.php**
 
