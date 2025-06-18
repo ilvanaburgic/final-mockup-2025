@@ -67,7 +67,7 @@ public function get_customers(){
 }
 ```
 
-##STEP 3: returns array of all meals for a specific customer
+## STEP 3: returns array of all meals for a specific customer
 ```php
 **ExamDao.php:**
 
