@@ -19,7 +19,7 @@ class ExamService {
     * Implement service method to get all customer meals
     */
     public function get_customer_meals($customer_id){
-
+        return $this->dao->get_customer_meals($customer_id); //DODANO
     }
 
     /** TODO

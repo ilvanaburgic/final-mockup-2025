@@ -35,3 +35,56 @@ ExamRoutes.php:
 Flight::route('GET /connection-check', function(){
     new ExamDao(); //DODANO
 });
+
+
+STEP 2: get customer information
+
+ExamDao.php:
+
+  --get customer information--
+public function get_customers(){
+  $stmt = $this->conn->prepare("SELECT * FROM customers"); //DODANO
+  $stmt->execute(); //DODANO
+  return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
+}
+
+ExamRoutes.php:
+
+Flight::route('GET /customers', function(){
+  Flight::json(Flight::examService()->get_customers());
+});
+
+ExamServices.php:
+
+public function get_customers(){
+  return $this->dao->get_customers(); //DODANO
+}
+
+STEP 3: returns array of all meals for a specific customer
+
+ExamDao.php:
+
+public function get_customer_meals($customer_id) {
+
+//DODANO
+$stmt = $this->conn->prepare("
+  SELECT f.name AS food_name, f.brand AS food_brand, DATE(m.created_at) AS meal_date 
+    FROM meals m 
+    JOIN foods f ON m.food_id = f.id
+    WHERE m.customer_id = ?
+  ");
+  $stmt->execute([$customer_id]); //DODANO
+  return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
+}
+
+ExamRoutes.php:
+
+Flight::route('GET /customer/meals/@customer_id', function($customer_id){
+  Flight::json(Flight::examService()->get_customer_meals($customer_id)); //DODANO
+});
+
+ExamServices.php:
+
+public function get_customer_meals($customer_id){
+  return $this->dao->get_customer_meals($customer_id); //DODANO
+}

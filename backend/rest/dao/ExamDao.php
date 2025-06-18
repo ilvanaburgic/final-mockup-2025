@@ -43,7 +43,15 @@ class ExamDao {
      * Implement DAO method used to get customer meals
      */
     public function get_customer_meals($customer_id) {
-
+      //DODANO
+      $stmt = $this->conn->prepare("
+            SELECT f.name AS food_name, f.brand AS food_brand, DATE(m.created_at) AS meal_date
+            FROM meals m
+            JOIN foods f ON m.food_id = f.id
+            WHERE m.customer_id = ?
+        ");
+        $stmt->execute([$customer_id]); //DODANO
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
     }
 
     /** TODO
