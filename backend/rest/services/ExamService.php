@@ -12,7 +12,7 @@ class ExamService {
     * Implement service method to get all customers
     */
     public function get_customers(){
-
+        return $this->dao->get_customers(); //DODANO
     }
 
     /** TODO

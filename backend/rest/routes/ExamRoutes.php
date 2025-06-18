@@ -18,6 +18,7 @@ Flight::route('GET /customers', function(){
     * This endpoint should return output in JSON format
     * 10 points
     */
+    Flight::json(Flight::examService()->get_customers());
 });
 
 Flight::route('GET /customer/meals/@customer_id', function($customer_id){

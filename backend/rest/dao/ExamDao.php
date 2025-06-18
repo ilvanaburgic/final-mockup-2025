@@ -34,7 +34,9 @@ class ExamDao {
      * Implement DAO method used to get customer information
      */
     public function get_customers(){
-
+      $stmt = $this->conn->prepare("SELECT * FROM customers"); //DODANO
+        $stmt->execute(); //DODANO
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
     }
 
     /** TODO
