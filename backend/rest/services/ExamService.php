@@ -34,7 +34,7 @@ class ExamService {
     * and total of nutrients for each food
     */
     public function foods_report(){
-
+        return $this->dao->get_foods_report(); //DODANO
     }
 }
 ?>

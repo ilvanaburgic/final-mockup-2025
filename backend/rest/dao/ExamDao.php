@@ -72,7 +72,25 @@ class ExamDao {
      * Implement DAO method used to get foods report
      */
     public function get_foods_report(){
-
+      //DODANO
+      $stmt = $this->conn->prepare("
+            SELECT 
+                f.name,
+                f.brand,
+                CONCAT('<img src=\"', f.image_url, '\" width=\"100\" />') AS image,
+                SUM(CASE WHEN n.name = 'Energy' THEN fn.quantity ELSE 0 END) AS energy,
+                SUM(CASE WHEN n.name = 'Protein' THEN fn.quantity ELSE 0 END) AS protein,
+                SUM(CASE WHEN n.name = 'Fat' THEN fn.quantity ELSE 0 END) AS fat,
+                SUM(CASE WHEN n.name = 'Fiber' THEN fn.quantity ELSE 0 END) AS fiber,
+                SUM(CASE WHEN n.name = 'Carb' THEN fn.quantity ELSE 0 END) AS carbs
+            FROM foods f
+            LEFT JOIN food_nutrients fn ON f.id = fn.food_id
+            LEFT JOIN nutrients n ON fn.nutrient_id = n.id
+            GROUP BY f.id
+            LIMIT 50
+        ");
+        $stmt->execute(); //DODANO
+        return $stmt->fetchAll(PDO::FETCH_ASSOC); //DODANO
     }
 }
 ?>

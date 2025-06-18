@@ -65,6 +65,7 @@ Flight::route('GET /foods/report', function(){
     * This endpoint should return output in JSON format
     * 15 points
     */
+    Flight::json(Flight::examService()->foods_report()); //DODANO
 });
 
 ?>
