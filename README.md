@@ -12,7 +12,7 @@ public function __construct(){
            */
           $servername = "127.0.0.1"; //DODANO
             $username = "root"; //DODANO
-            $password = "12nana123"; //DODANO
+            $password = "stavi_koji_je_dat"; //DODANO
             $dbname = "webfinal"; //DODANO
             $port = 3306; //DODANO
 
