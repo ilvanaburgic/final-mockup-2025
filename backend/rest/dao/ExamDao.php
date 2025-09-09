@@ -14,7 +14,7 @@ class ExamDao {
            */
           $servername = "127.0.0.1"; //DODANO
             $username = "root"; //DODANO
-            $password = "12nana123"; //DODANO
+            $password = "stavi_password_koji_je_dan"; //DODANO
             $dbname = "webfinal"; //DODANO
             $port = 3306; //DODANO
 
